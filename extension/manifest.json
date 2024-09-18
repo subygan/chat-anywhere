@@ -23,9 +23,15 @@
     "background": {
         "service_worker": "service-worker.js"
     },
+    "sandbox": {
+        "pages": ["sandbox.html"]
+    },
     "content_scripts": [{
         "js": ["foreground.js"],
         "matches": ["https://www.youtube.com/watch*"],
         "run_at": "document_idle"
-    }]
+    }],
+    "content_security_policy": {
+        "sandbox": "sandbox allow-scripts; script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com"
+    }
 }
