@@ -15,7 +15,8 @@
         "default_popup": "popup/popup.html"
     },
     "permissions": [
-        "activeTab"
+        "activeTab",
+        "identity"
     ],
     "host_permissions": [
         "*://www.youtube.com/*"
