@@ -1,7 +1,36 @@
-<html>
-<body>
-<button id="init">Initialized Firebase</button><br />
-<iframe id="iframe" src="sandbox.html"></iframe>
-<script src="popup.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+          content="script-src 'self' 'wasm-unsafe-eval' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com">
+    <title>YouTube Chat Extension</title>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            width: 300px;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+<div class="bg-white rounded-lg shadow p-6">
+    <h1 class="text-2xl font-bold mb-4 text-gray-800">YouTube Chat Extension</h1>
+    <p class="mb-4 text-gray-600">Enhance your YouTube experience with AI-powered chat.</p>
+    <div id="loginStatus" class="mb-4 text-sm text-gray-500">
+        Not logged in
+    </div>
+    <button id="loginBtn" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-2">
+        Log In with Google
+    </button>
+    <button id="logoutBtn" class="w-full bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded hidden">
+        Log Out
+    </button>
+</div>
+
+<script src="popup.js" type="module"></script>
 </body>
 </html>

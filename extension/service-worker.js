@@ -1,3 +1,19 @@
+const firebaseConfig = {
+
+};
+
+const app = firebase.initializeApp(firebaseConfig);
+const auth = firebase.getAuth(app);
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log('User is signed in:', user.email);
+        // You can perform actions here when the user is signed in
+    } else {
+        console.log('User is signed out');
+        // You can perform actions here when the user is signed out
+    }
+});
 // background.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === 'sendToLLM') {
@@ -8,6 +24,29 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             .catch(error => sendResponse({ error: error.message }));
 
         return true; // Indicates that the response is asynchronous
+    }
+});
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.action === 'login') {
+        // Perform login authentication here
+        // This is a placeholder for actual authentication logic
+        const username = request.username;
+        const password = request.password;
+
+        // Simulating an API call
+        setTimeout(() => {
+            const success = true; // Replace with actual authentication result
+            if (success) {
+                chrome.storage.sync.set({loggedIn: true, username: username}, function() {
+                    sendResponse({success: true});
+                });
+            } else {
+                sendResponse({success: false, error: 'Invalid credentials'});
+            }
+        }, 1000);
+
+        return true; // Indicates that the response is sent asynchronously
     }
 });
 
